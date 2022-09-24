@@ -184,7 +184,105 @@
 
     .chat {
         flex: 2;
-        padding-left: 10px;
+
+        .chatInfo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            background-color: #5d5b8d;
+            justify-content: space-between;
+            padding: 10px;
+            color: lightgray;
+        }
+
+        .chatIcons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            button {
+                border: none;
+                background-color: #5d5b8d;
+                color: lightgray;
+                font-weight: bold;
+                cursor: pointer;
+
+                &:hover {
+                    color: #2f2d52;
+                }
+            }
+        }
+
+        .messages {
+            background-color: #ddddf7;
+            padding: 10px;
+            height: calc(100% - 160px);
+        }
+
+        .input {
+            height: 50px;
+            padding: 10px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            input {
+                border: none;
+                outline: none;
+                font-size: 18px;
+                width: 100%;
+                color: #2f2d52;
+
+                &::placeholder {
+                    color: lightgray;
+                }
+            }
+        }
     }
+
+
+
+    // .chat {
+    //     flex: 2;
+    //     padding-left: 1px;
+
+    //     .chat_header {
+    //         display: flex;
+    //         align-items: center;
+    //         height: 60px;
+    //         justify-content: space-between;
+    //         padding: 5px 15px;
+    //         background-color: #2f2d52;
+    
+    //         .chat_icons {
+    //             display: flex;
+    //             align-items: center;
+    //             gap: 10px;
+    //         }
+    //     }
+
+    //     .message_input {
+    //         width: 100%;
+    //         height: 60px;
+    //         background-color: #ddddf7;
+            
+
+    //         input {
+    //             width: 100%;
+    //             height: 100%;
+    //             background-color: transparent;
+    //             border: none;
+    //             border-top: 1px solid white;
+
+    //             &::placeholder {
+    //                 color: #5d5b8d;
+    //                 font-size: 14px;
+    //             }
+    //         }
+    //     }
+    // }
+
+    
 }
 
