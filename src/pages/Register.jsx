@@ -1,39 +1,39 @@
-import React from 'react';
+import {React , useState} from 'react';
 import { auth , storage } from '../firebase'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useState } from 'react';
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const Register = () => {
-  const [err, setErr] = useState(false)
 
+  const [err, setErr] = useState(false)
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
-    try {
-      const resp = await createUserWithEmailAndPassword(auth, email, password); 
-      const storageRef = ref(storage, displayName);
-      const uploadTask = uploadBytesResumable(storageRef, file)  
-      
-      uploadTask.on(
-        (error) => {
-          setErr(true)
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            updateProfile(resp.user, {displayName, photoURL: downloadURL})
-          })
-        }
-      )
+  try {
+    const resp = await createUserWithEmailAndPassword(auth, email, password)
+    const storageRef = ref(storage, displayName)
+    const uploadTask = uploadBytesResumable(storageRef, file)
 
-    } catch (error) {
-      setErr(true)
-    }
+    uploadTask.on(
+      (error) => {
+        setErr(true)
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) =>{
+          await updateProfile(resp.user, {displayName, photoURL:downloadURL})
+        })
+      }
+    )
+
+  } catch (error) {
+    setErr(true)
   }
+}
 
   return (
     <div className='formContainer'>
@@ -46,7 +46,7 @@ const Register = () => {
                 <input type='password' className='formInput' placeholder='Password'></input>
                 <input style={{display : "none"}} type='file' className='formInput' placeholder='' id='file'></input>
                 <label htmlFor='file'>
-                  <img src="" alit="" ></img>
+                  <img src="" alt="" ></img>
                   <span>Add an Avatar</span>
                 </label>
                 <button>Sign Up</button>
@@ -57,5 +57,6 @@ const Register = () => {
     </div>
   )
 }
+
 
 export default Register
