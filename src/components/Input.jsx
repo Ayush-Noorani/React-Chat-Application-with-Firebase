@@ -1,4 +1,5 @@
 import React from 'react'
+import Attach from '../images/download.png';
 
 export const Input = () => {
   return (
@@ -7,7 +8,7 @@ export const Input = () => {
       <div className='send'>
         <input type='file' id='attachment' style={{display: "none"}}></input>
         <label htmlFor='attachment'>
-          <img src='' alt=''></img>
+          <img src={Attach} alt=''></img>
         </label>
         <button>Send</button>
       </div>
