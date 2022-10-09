@@ -23,6 +23,7 @@ const Register = () => {
       uploadTask.on(
         (error) => {
           setErr(true)
+          console.log(error)
         },
         () => {
           // this stores the name and photo
@@ -33,13 +34,15 @@ const Register = () => {
 
             const userRef = doc(db, 'users', resp.user.uid);
             await setDoc(userRef)
+
             // db.collection('users').add({
             //   uid : resp.user.uid,
             //   displayName: resp.user.displayName,
             //    email: resp.user.email,
             //    photoURL: downloadURL
             // })
-            // await setDoc(doc(db, "/users", resp.user.uid), {
+
+            // await setDoc(doc(db, "users", resp.user.uid), {
             //   displayName: resp.user.displayName,
             //   email: resp.user.email,
             //   photoURL: downloadURL
@@ -50,6 +53,7 @@ const Register = () => {
     }
     catch (error) {
       setErr(true)
+      console.log(error)
     }
   }
   
